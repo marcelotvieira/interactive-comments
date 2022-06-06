@@ -27,22 +27,21 @@ body {
 .comment-header {
   display: flex;
   align-items: center;
-  gap: .7rem;
+  gap: 0.7rem;
   color: hsl(211, 10%, 45%);
   font-weight: 400;
 }
 .user-name {
   font-weight: 500;
   color: hsl(212, 24%, 26%);
-
 }
 
 .comment-card img {
-  width: 38px;
+  width: 34px;
   margin: 0px 8px;
 }
 .comment-content {
-  padding: 22px 0;
+  padding: 20px 0;
   color: hsl(211, 10%, 45%);
   font-weight: 400;
 }
@@ -51,7 +50,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .comment-score {
@@ -75,14 +73,14 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 #score-dec {
-  background-image: url('/src/images/icon-minus.svg');
+  background-image: url("/src/images/icon-minus.svg");
 }
 #score-inc {
-  background-image: url('/src/images/icon-plus.svg');
+  background-image: url("/src/images/icon-plus.svg");
 }
-
 
 .reply-button {
   color: hsl(238, 40%, 52%);
