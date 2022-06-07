@@ -1,3 +1,4 @@
+import loadCommentData from "/src/comments/loadCommentData.js";
 export default function repliesCardGen(
   id,
   count,
@@ -21,16 +22,16 @@ export default function repliesCardGen(
     avatarImage.setAttribute("src", reply.user.image.png);
     let userName = document.createElement("p");
     userName.setAttribute("class", "user-name");
-    userName.append(reply.user.username);
+
     let createdAt = document.createElement("p");
     createdAt.setAttribute("class", "created-at");
-    createdAt.append(reply.createdAt);
+
 
     let replyContent = document.createElement("div");
     replyContent.setAttribute("class", "comment-content");
     let content = document.createElement("p");
     content.setAttribute("class", "content");
-    content.append(reply.content);
+
 
     let commentFooter = document.createElement("div");
     commentFooter.setAttribute("class", "comment-footer");
@@ -60,7 +61,7 @@ export default function repliesCardGen(
     replyCardHeader.append(avatarImage, userName, createdAt);
     replyContent.append(content);
     replyCard.append(replyCardHeader, replyContent, commentFooter);
-
+    loadCommentData(userName, createdAt, content, scoreValue, reply)
     replyContainer.append(replyCard);
   });
 }
