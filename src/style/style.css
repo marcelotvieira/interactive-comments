@@ -37,6 +37,9 @@ body {
   width: 34px;
   margin: 0px 8px;
 }
+.avatar-image {
+  width: 34px;
+}
 .created-at {
   color: hsl(211, 10%, 45%);
   font-weight: 400;
@@ -99,12 +102,54 @@ body {
 .reply-container0,
 .reply-container1 {
   display: none;
-  width: 94%;
-  padding-left: 6%;
+  width: 100%;
+
   border-left: 3px solid hsl(223, 19%, 93%);
+}
+.reply-box0,
+.reply-box1 {
+  display: none;
 }
 
 .reply-container0.active,
-.reply-container1.active {
+.reply-box0.active,
+.reply-container1.active,
+.reply-box1.active {
   display: block;
+}
+#reply-card0,
+#reply-card1 {
+  width: 82%;
+  margin-left: 6%;
+}
+
+.reply-comment {
+  background-color: white;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+  padding: 22px;
+  width: 88%;
+}
+.reply-input {
+  resize: none;
+  width: 85%;
+  height: 78px;
+  border-radius: 8px;
+  border: 2px solid hsl(223, 19%, 93%);
+  padding: 22px;
+  margin-bottom: 10px;
+}
+.reply-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.send-button {
+  background-color: hsl(238, 40%, 52%);
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 8px;
+  font-weight: 700;
 }

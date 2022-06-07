@@ -9,10 +9,10 @@ const commentCardGen = fetch("src/data/data.json")
   })
   .then((jsonData) => {
     const commentData = jsonData.comments;
+    const currentUser = jsonData.currentUser;
     var count = 0;
     var commentList = [];
-    var showreply1 = false;
-    var showreply2 = false;
+
     let commentCard = commentData.map((comment) => {
       const commentCard = document.createElement("div");
       commentCard.setAttribute("class", "comment-card");
@@ -22,6 +22,7 @@ const commentCardGen = fetch("src/data/data.json")
       commentHeader.setAttribute("class", "comment-header");
       let avatarImage = document.createElement("img");
       avatarImage.setAttribute("src", comment.user.image.png);
+      avatarImage.setAttribute("class", "avatar-image");
       let userName = document.createElement("p");
       userName.setAttribute("class", "user-name");
       let createdAt = document.createElement("span");
@@ -61,15 +62,22 @@ const commentCardGen = fetch("src/data/data.json")
       let replyContainer = document.createElement("div");
       replyContainer.setAttribute("class", "reply-container" + count + "");
       replyContainer.setAttribute("id", "reply-container" + count + "");
+      let replyBox = document.createElement("div");
+      replyBox.setAttribute("class", "reply-box" + count + "");
+      replyBox.setAttribute("id", "reply-box" + count + "");
 
       replyButton.addEventListener("click", function toggleReplies() {
         console.log(replyButton.id[replyButton.id.length - 1]);
         if (replyButton.id[replyButton.id.length - 1] == 0) {
           let replyContainer = document.getElementById("reply-container0");
           replyContainer.classList.toggle("active");
+          let replyBox = document.getElementById("reply-box0");
+          replyBox.classList.toggle("active");
         } else {
           let replyContainer = document.getElementById("reply-container1");
           replyContainer.classList.toggle("active");
+          let replyBox = document.getElementById("reply-box1");
+          replyBox.classList.toggle("active");
         }
       });
 
@@ -77,14 +85,16 @@ const commentCardGen = fetch("src/data/data.json")
       commentFooter.append(commentScore, replyButton);
 
       commentCard.append(commentHeader, commentContent, commentFooter);
-      container.append(commentCard, replyContainer);
+      container.append(commentCard, replyContainer, replyBox);
       repliesCardGen(
         comment.id,
         count,
         comment.replies,
         container,
         replyButton.value,
-        replyContainer
+        replyContainer,
+        currentUser,
+        replyBox
       );
       count++;
       commentList.push(commentCard);

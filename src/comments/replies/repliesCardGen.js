@@ -5,14 +5,16 @@ export default function repliesCardGen(
   replies,
   container,
   comment,
-  replyContainer
+  replyContainer,
+  currentUser,
+  replybox
 ) {
   replies.map((reply) => {
     console.log(reply);
 
     let replyCard = document.createElement("div");
     replyCard.setAttribute("class", "comment-card");
-    replyCard.setAttribute("id", "reply-card" + id + "");
+    replyCard.setAttribute("id", "reply-card" + count + "");
 
     let replyCardHeader = document.createElement("div");
     replyCardHeader.setAttribute("class", "comment-header");
@@ -26,12 +28,10 @@ export default function repliesCardGen(
     let createdAt = document.createElement("p");
     createdAt.setAttribute("class", "created-at");
 
-
     let replyContent = document.createElement("div");
     replyContent.setAttribute("class", "comment-content");
     let content = document.createElement("p");
     content.setAttribute("class", "content");
-
 
     let commentFooter = document.createElement("div");
     commentFooter.setAttribute("class", "comment-footer");
@@ -61,7 +61,40 @@ export default function repliesCardGen(
     replyCardHeader.append(avatarImage, userName, createdAt);
     replyContent.append(content);
     replyCard.append(replyCardHeader, replyContent, commentFooter);
-    loadCommentData(userName, createdAt, content, scoreValue, reply)
+    loadCommentData(userName, createdAt, content, scoreValue, reply);
     replyContainer.append(replyCard);
+    count++;
   });
+
+  function sendComment(id) {
+    let comment = document.getElementById("reply-input" + id + "").value;
+    console.log(comment);
+
+    document.getElementById("reply-input" + id + "").value = "";
+  }
+
+  function replyBox(id) {
+    let replyComment = document.createElement("div");
+    replyComment.setAttribute("class", "reply-comment");
+    let replyInput = document.createElement("textarea");
+    let replyFooter = document.createElement("div");
+    replyFooter.setAttribute("class", "reply-footer");
+    replyInput.setAttribute("class", "reply-input");
+    replyInput.setAttribute("id", "reply-input" + id + "");
+    replyInput.setAttribute("placeholder", "Add a comment...");
+    let avatarUser = document.createElement("img");
+    avatarUser.setAttribute("class", "avatar-image");
+    avatarUser.setAttribute("src", currentUser.image.png);
+    let sendButton = document.createElement("button");
+    sendButton.setAttribute("class", "send-button");
+    replyFooter.append(avatarUser, sendButton);
+    sendButton.append("SEND");
+    replyComment.append(replyInput, replyFooter);
+    sendButton.addEventListener("click", () => {
+      sendComment(id);
+    });
+
+    replybox.append(replyComment);
+  }
+  replyBox(id);
 }
