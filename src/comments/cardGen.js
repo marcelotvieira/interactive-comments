@@ -70,14 +70,14 @@ const commentCardGen = fetch("src/data/data.json")
         console.log(replyButton.id[replyButton.id.length - 1]);
         if (replyButton.id[replyButton.id.length - 1] == 0) {
           let replyContainer = document.getElementById("reply-container0");
-          replyContainer.classList.toggle("active");
+          window.setTimeout( () => {replyContainer.classList.toggle("active");
           let replyBox = document.getElementById("reply-box0");
-          replyBox.classList.toggle("active");
+          replyBox.classList.toggle("active");}, 200)
         } else {
           let replyContainer = document.getElementById("reply-container1");
-          replyContainer.classList.toggle("active");
+          window.setTimeout( () => {replyContainer.classList.toggle("active");
           let replyBox = document.getElementById("reply-box1");
-          replyBox.classList.toggle("active");
+          replyBox.classList.toggle("active");}, 200)
         }
       });
 
